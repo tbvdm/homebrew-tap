@@ -9,6 +9,7 @@ jobs:
   test:
     runs-on: macos-latest
 
+    steps:
     - name: update
       run: brew update
 

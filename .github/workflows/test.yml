@@ -1,0 +1,24 @@
+name: test
+
+on:
+  push:
+  schedule:
+    - cron: '12 3 * * 4'
+
+jobs:
+  test:
+    runs-on: macos-latest
+
+    - name: update
+      run: brew update
+
+    - name: tap
+      run: brew tap tbvdm/tap
+
+    - name: install
+      run: |
+        for f in $(brew --repo tbvdm/tap)/Formula/*.rb; do
+          f=$(basename $f .rb)
+          brew uninstall --force $(brew list)
+          brew install --HEAD $f
+        done

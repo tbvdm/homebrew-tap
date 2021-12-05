@@ -26,5 +26,5 @@ jobs:
         for f in $(brew --repo tbvdm/tap)/Formula/*.rb; do
           f=$(basename $f .rb)
           brew uninstall --force $(brew list)
-          brew install --HEAD $f
+          brew install --HEAD --verbose $f
         done

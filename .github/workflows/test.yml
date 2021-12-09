@@ -21,6 +21,9 @@ jobs:
     - name: tap
       run: brew tap tbvdm/tap
 
+    - name: work around soundflower uninstall failure
+      run: sudo /sbin/kextunload -b com.Cycling74.driver.Soundflower || true
+
     - name: install
       run: |
         for f in $(brew --repo tbvdm/tap)/Formula/*.rb; do

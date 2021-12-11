@@ -14,4 +14,8 @@ class Sigtop < Formula
     ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin" if OS.mac?
     system "make", "PREFIX=#{prefix}", "MANDIR=#{man}", "install"
   end
+
+  test do
+    system "#{bin}/sigtop; test $? = 1"
+  end
 end

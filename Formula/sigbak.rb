@@ -16,4 +16,8 @@ class Sigbak < Formula
     ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin" if OS.mac?
     system "make", "PREFIX=#{prefix}", "MANDIR=#{man}", "install"
   end
+
+  test do
+    system "#{bin}/sigbak; test $? = 1"
+  end
 end

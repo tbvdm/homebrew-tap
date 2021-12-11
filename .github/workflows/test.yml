@@ -31,4 +31,5 @@ jobs:
           f=$(basename $f .rb)
           brew uninstall --force $(brew list)
           brew install --HEAD --verbose $f
+          brew test --HEAD --verbose $f
         done

@@ -21,11 +21,6 @@ jobs:
     - name: tap
       run: brew tap tbvdm/tap
 
-      # Work around occasional soundflower uninstall failure in next step
-    - name: kextunload
-      if: startsWith(matrix.os, 'macos')
-      run: sudo /sbin/kextunload -b com.Cycling74.driver.Soundflower || true
-
     - name: uninstall
       run: brew uninstall --force $(brew list)
 

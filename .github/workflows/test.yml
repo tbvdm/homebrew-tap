@@ -30,6 +30,9 @@ jobs:
       run: brew tap tbvdm/tap
 
     - name: uninstall
+      # Skip this step on Ubuntu because it has started to cause mysterious
+      # problems with Homebrew
+      if: startsWith(matrix.os, 'ubuntu') == false
       run: brew uninstall --force $(brew list)
 
     - name: test

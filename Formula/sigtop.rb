@@ -1,18 +1,12 @@
 class Sigtop < Formula
   homepage "https://github.com/tbvdm/sigtop"
-  head "https://github.com/tbvdm/sigtop.git", branch: "portable"
+  head "https://github.com/tbvdm/sigtop.git"
 
-  depends_on "pkg-config" => :build
-  depends_on "libressl"
-
-  # Xcode provides GNU make 3.81, which is too old
-  on_macos do
-    depends_on "make" => :build
-  end
+  depends_on "go" => :build
 
   def install
-    ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin" if OS.mac?
-    system "make", "PREFIX=#{prefix}", "MANDIR=#{man}", "install"
+    system "go", "build", *std_go_args
+    man1.install "sigtop.1"
   end
 
   test do

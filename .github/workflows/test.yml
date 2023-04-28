@@ -15,9 +15,9 @@ jobs:
       # https://github.com/actions/runner-images/issues/6283
       - name: path
         if: startsWith(matrix.os, 'ubuntu')
-        run: >
-          echo /home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin
-          >> $GITHUB_PATH
+        run: |
+          d=/home/linuxbrew/.linuxbrew
+          echo $d/bin:$d/sbin >> $GITHUB_PATH
 
       - name: update
         run: brew update

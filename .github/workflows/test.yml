@@ -28,7 +28,13 @@ jobs:
       - name: uninstall
         run: |
           f=$(brew list)
-          [[ -n $f ]] && brew uninstall --force $f
+          if [[ -n $f ]]; then
+            brew uninstall --force $f
+            # Remove dangling symlinks from the formulae that have just been
+            # uninstalled. This prevents problems when one of them is
+            # reinstalled later.
+            brew cleanup --prune-prefix
+          fi
 
       - name: test
         run: |

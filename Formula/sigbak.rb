@@ -5,7 +5,8 @@ class Sigbak < Formula
   depends_on "pkg-config" => :build
   depends_on "libressl"
   depends_on "protobuf-c"
-  depends_on "sqlite"
+
+  uses_from_macos "sqlite"
 
   # Xcode provides GNU make 3.81, which is too old
   on_macos do

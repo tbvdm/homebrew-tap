@@ -15,7 +15,8 @@ class Sigbak < Formula
 
   def install
     ENV.prepend_path "PATH", Formula["make"].opt_libexec/"gnubin" if OS.mac?
-    system "make", "PREFIX=#{prefix}", "MANDIR=#{man}", "install"
+    # Set PROTOC to work around broken protobuf-c formula
+    system "make", "PREFIX=#{prefix}", "MANDIR=#{man}", "PROTOC=protoc", "install"
   end
 
   test do

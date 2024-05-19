@@ -2,6 +2,10 @@ class Sigtop < Formula
   homepage "https://github.com/tbvdm/sigtop"
   head "https://github.com/tbvdm/sigtop.git"
 
+  # Provide a stable source to work around a Homebrew bug; see
+  # https://github.com/Homebrew/brew/issues/17333
+  url "https://github.com/tbvdm/sigtop.git", tag: "v0.11.0"
+
   depends_on "go" => :build
 
   def install

@@ -2,6 +2,10 @@ class Sigbak < Formula
   homepage "https://github.com/tbvdm/sigbak"
   head "https://github.com/tbvdm/sigbak.git", branch: "portable"
 
+  # Provide a fake stable source to work around a Homebrew bug; see
+  # https://github.com/Homebrew/brew/issues/17333
+  url "https://github.com/tbvdm/sigbak.git", tag: "0"
+
   depends_on "pkg-config" => :build
   depends_on "libressl"
   depends_on "protobuf-c"

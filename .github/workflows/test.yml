@@ -25,13 +25,19 @@ jobs:
       - name: tap
         run: brew tap tbvdm/tap
 
-      - name: uninstall
+      - name: uninstall-casks
+        if: startsWith(matrix.os, 'macos')
         run: |
-          f=$(brew list)
+          c=$(brew list --cask)
+          [[ -n $c ]] && brew uninstall --force --cask $c
+
+      - name: uninstall-formulae
+        run: |
+          f=$(brew list --formula)
           if [[ -n $f ]]; then
-            brew uninstall --force $f
+            brew uninstall --force --formula $f
             # Remove dangling symlinks from the formulae that have just been
-            # uninstalled. This prevents problems when one of them is
+            # uninstalled. This prevents problems when some of them are
             # reinstalled later.
             brew cleanup --prune-prefix
           fi

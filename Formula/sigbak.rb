@@ -2,7 +2,7 @@ class Sigbak < Formula
   homepage "https://github.com/tbvdm/sigbak"
   head "https://github.com/tbvdm/sigbak.git", branch: "portable"
 
-  depends_on "pkg-config" => :build
+  depends_on "pkgconf" => :build
   depends_on "libressl"
   depends_on "protobuf-c"
 

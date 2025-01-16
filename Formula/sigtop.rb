@@ -4,6 +4,10 @@ class Sigtop < Formula
 
   depends_on "go" => :build
 
+  on_linux do
+    depends_on "libsecret"
+  end
+
   def install
     system "go", "build", *std_go_args
     man1.install "sigtop.1"
